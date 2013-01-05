@@ -1,0 +1,7 @@
+.*
+!.gitignore
+
+# SBT
+/project/project/
+/project/target/
+/target/
