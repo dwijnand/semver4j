@@ -18,7 +18,7 @@ object Version {
     val headId: ObjectId = repo.resolve(Constants.HEAD)
 
     val tags = for {
-      tag <- repo.getRefDatabase.getRefs(Constants.R_TAGS).values().asScala
+      tag <- repo.getTags.values().asScala
       if tag.getObjectId == headId
       name = tag.getName
       if name(0).isDigit
