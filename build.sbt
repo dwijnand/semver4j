@@ -1,4 +1,4 @@
-name := "sbt-dynver-p1"
+name := "sbt-dynver"
 
 version := "1.0-SNAPSHOT"
 
