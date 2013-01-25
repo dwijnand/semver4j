@@ -1,8 +1,6 @@
 package sbt.dynver
 
 import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Date
 import collection.JavaConverters._
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.lib.{IndexDiff, Constants}
@@ -15,7 +13,7 @@ object Main {
     println("version = " + getVersion(Git.open(repoDir)))
   }
 
-  def getVersion(git: Git): String = {
+  def getVersion(git: Git): Version = {
     val repo = git.getRepository
     val headId = repo.resolve(Constants.HEAD)
 
@@ -33,24 +31,20 @@ object Main {
     // TODO: Match some regex, see semver
     } yield shortTagName
 
-    val version =
-      if (headTags.isEmpty) {
-        val tagsMap = for {(shortTagName, tag) <- tags} yield (revWalk.parseCommit(tag.getObjectId), shortTagName)
-        val commitSeq = revWalk.asScala.toSeq
-        val prefix = commitSeq.find(tagsMap.contains) match {
-          case Some(commit) => {
-            val tagName = tagsMap(commit)
-            val tagDistance = commitSeq.indexOf(commit)
-            tagName + '+' + tagDistance + '-'
-          }
-          case None => "" // no commits in tags map => no tags
-        }
-        prefix + headId.name.slice(0, 12)
-      } else headTags.last
-
     val isDirty = new IndexDiff(repo, Constants.HEAD, new FileTreeIterator(repo)).diff()
 
-    if (isDirty) version + "+" + new SimpleDateFormat("yyyyMMdd").format(new Date())
-    else version
+    if (headTags.isEmpty) {
+      val commitHash = headId.name.slice(0, 12)
+      val tagsMap = for {(shortTagName, tag) <- tags} yield (revWalk.parseCommit(tag.getObjectId), shortTagName)
+      val commitSeq = revWalk.asScala.toSeq
+      commitSeq.find(tagsMap.contains) match {
+        case Some(commit) => {
+          val tagName = tagsMap(commit)
+          val tagDistance = commitSeq.indexOf(commit)
+          TagAndCommitVersion(tagName, tagDistance, commitHash, isDirty)
+        }
+        case None => CommitVersion(commitHash, isDirty) // no commits in tags map => no tags
+      }
+    } else TaggedVersion(headTags.last)
   }
 }
