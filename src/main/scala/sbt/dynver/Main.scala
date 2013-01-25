@@ -37,11 +37,15 @@ object Main {
       if (headTags.isEmpty) {
         val tagsMap = for {(shortTagName, tag) <- tags} yield (revWalk.parseCommit(tag.getObjectId), shortTagName)
         val commitSeq = revWalk.asScala.toSeq
-        val commit = commitSeq.find(tagsMap.contains).get
-        val tagName = tagsMap(commit)
-        val tagDistance = commitSeq.indexOf(commit)
-
-        tagName + '+' + tagDistance + '-' + headId.name.slice(0, 12)
+        val prefix = commitSeq.find(tagsMap.contains) match {
+          case Some(commit) => {
+            val tagName = tagsMap(commit)
+            val tagDistance = commitSeq.indexOf(commit)
+            tagName + '+' + tagDistance + '-'
+          }
+          case None => "" // no commits in tags map => no tags
+        }
+        prefix + headId.name.slice(0, 12)
       } else headTags.last
 
     val isDirty = new IndexDiff(repo, Constants.HEAD, new FileTreeIterator(repo)).diff()
