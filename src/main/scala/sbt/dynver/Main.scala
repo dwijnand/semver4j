@@ -1,3 +1,5 @@
+package sbt.dynver
+
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -7,7 +9,7 @@ import org.eclipse.jgit.lib.{IndexDiff, Constants}
 import org.eclipse.jgit.revwalk.RevWalk
 import org.eclipse.jgit.treewalk.FileTreeIterator
 
-object Version {
+object Main {
   def main(args: Array[String]) {
     val repoDir = new File("target/test-repo")
     println("version = " + getVersion(Git.open(repoDir)))
