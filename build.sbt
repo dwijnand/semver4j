@@ -1,3 +1,5 @@
+organization := "org.scala-sbt"
+
 name := "sbt-dynver"
 
 version := "1.0-SNAPSHOT"
