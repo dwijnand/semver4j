@@ -4,7 +4,7 @@ import util.matching.Regex
 
 package object dynver {
   implicit class RichRegex(re: Regex) {
-    def matches(s: String) = re.pattern.matcher(s).matches
+    def matches(str: String) = re.pattern.matcher(str).matches
   }
 
 
