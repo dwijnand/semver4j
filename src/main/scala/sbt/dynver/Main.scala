@@ -13,7 +13,7 @@ object Main {
     println("version = " + getVersion(Git.open(repoDir)))
   }
 
-  def getVersion(git: Git): Version = {
+  def getVersion(git: Git, tagPred: (String => Boolean) = SemVer.validate): Version = {
     val repo = git.getRepository
     val headId = repo.resolve(Constants.HEAD)
 
@@ -28,7 +28,7 @@ object Main {
       revObj = revWalk.parseAny(tagId)
       peeledRevObj = revWalk.peel(revObj)
       if peeledRevObj == headId
-    // TODO: Match some regex, see semver
+      if tagPred(shortTagName)
     } yield shortTagName
 
     val isDirty = new IndexDiff(repo, Constants.HEAD, new FileTreeIterator(repo)).diff()
