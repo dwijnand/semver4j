@@ -18,6 +18,8 @@ object SemVer {
       Some(SemVer(major.toInt, minor.toInt, patch.toInt, prerelease.orBlank, build.orBlank))
     case _ => None
   }
+
+  def validate(str: String): Boolean = matchingRegex.matches(str)
 }
 
 case class SemVer(major: Int, minor: Int = 0, patch: Int = 0, prerelease: String = "", build: String = "") {
