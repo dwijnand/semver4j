@@ -41,9 +41,9 @@ object Main {
         case Some(commit) => {
           val tagName = tagsMap(commit)
           val tagDistance = commitSeq.indexOf(commit)
-          TagAndCommitVersion(tagName, tagDistance, commitHash, isDirty)
+          PostTagVersion(tagName, tagDistance, commitHash, isDirty)
         }
-        case None => CommitVersion(commitHash, isDirty) // no commits in tags map => no tags
+        case None => NoTagVersion(commitHash, isDirty) // no commits in tags map => no tags
       }
     } else TaggedVersion(headTags.last)
   }
