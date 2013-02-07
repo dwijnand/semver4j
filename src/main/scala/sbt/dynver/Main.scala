@@ -46,6 +46,7 @@ object Main {
         }
         case None => NoTagVersion(commitHash, isDirty) // no commits in tags map => no tags
       }
-    } else TaggedVersion(headTags.last)
+    } else
+      TaggedVersion(headTags.last, isDirty)
   }
 }
