@@ -27,9 +27,8 @@ object Main {
     val headTags = for {
       (shortTagName, tag) <- tags
       tagId = tag.getObjectId
-      revObj = revWalk.parseAny(tagId)
-      peeledRevObj = revWalk.peel(revObj)
-      if peeledRevObj == headId
+      tagCommit = revWalk.parseCommit(tagId)
+      if tagCommit == headId
       if tagPred(shortTagName)
     } yield shortTagName
 
