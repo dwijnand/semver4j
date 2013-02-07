@@ -3,18 +3,20 @@ package sbt.dynver
 import java.io.File
 import collection.JavaConverters._
 import org.eclipse.jgit.api.Git
-import org.eclipse.jgit.lib.{IndexDiff, Constants}
+import org.eclipse.jgit.lib.{Repository, IndexDiff, Constants}
 import org.eclipse.jgit.revwalk.RevWalk
 import org.eclipse.jgit.treewalk.FileTreeIterator
 
 object Main {
   def main(args: Array[String]) {
     val repoDir = new File("target/test-repo")
-    println("version = " + getVersion(Git.open(repoDir)))
+    val git = Git.open(repoDir)
+    val repo = git.getRepository
+    val version = getVersion(repo)
+    println("version = " + version)
   }
 
-  def getVersion(git: Git, tagPred: (String => Boolean) = SemVer.validate): Version = {
-    val repo = git.getRepository
+  def getVersion(repo: Repository, tagPred: (String => Boolean) = SemVer.validate): Version = {
     val headId = repo.resolve(Constants.HEAD)
 
     val revWalk = new RevWalk(repo)
