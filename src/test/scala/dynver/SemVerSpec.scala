@@ -41,7 +41,7 @@ class SemVerSpec extends Specification {
 
   "Good version strings" should {
     "be defined for SemVer" in {
-      good forall (str => SemVer.unapply(str) must not be none)
+      good forall (str => (SemVer.parse(str) must not).beNull)
     }
     "match matchingRegex" in {
       good forall (str => str must be matching(SemVer.matchingRegex))
@@ -50,7 +50,7 @@ class SemVerSpec extends Specification {
 
   "Bad version strings" should {
     "not be defined for SemVer" in {
-      bad forall (str => SemVer.unapply(str) must beNone)
+      bad forall (str => SemVer.parse(str) must beNull)
     }
     "not match matchingRegex" in {
       bad forall (str => str must not be matching(SemVer.matchingRegex))
