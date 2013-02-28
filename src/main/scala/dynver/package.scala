@@ -1,5 +1,3 @@
-package sbt
-
 import util.matching.Regex
 
 package object dynver {

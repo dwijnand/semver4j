@@ -1,4 +1,4 @@
-package sbt.dynver
+package dynver
 
 import java.util.Date
 import java.text.SimpleDateFormat

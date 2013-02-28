@@ -1,4 +1,4 @@
-package sbt.dynver
+package dynver
 
 import org.specs2.mutable.Specification
 

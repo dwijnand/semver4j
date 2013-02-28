@@ -1,4 +1,4 @@
-package sbt.dynver
+package dynver
 
 import java.io.File
 import collection.JavaConverters._

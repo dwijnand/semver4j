@@ -1,4 +1,4 @@
-package sbt.dynver
+package dynver
 
 object SemVer {
   val groupingRegex = ("^" +
