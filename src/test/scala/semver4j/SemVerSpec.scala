@@ -1,4 +1,4 @@
-package dynver
+package semver4j
 
 import org.specs2.mutable.Specification
 

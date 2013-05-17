@@ -1,26 +1,29 @@
-package dynver;
+package semver4j;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static dynver.internal.Utils.*;
+import static semver4j.Utils.nullToBlank;
+import static semver4j.Utils.requireMatches;
+import static semver4j.Utils.requireNonNegative;
+import static semver4j.Utils.requireNonNull;
 
 public final class SemVer {
-  public static final Pattern groupingRegex = Pattern.compile("^" +
+  public static final Pattern groupingRegex = Pattern.compile('^' +
       "((\\d+)\\.(\\d+)\\.(\\d+))" + // version string
-      "(?:\\-([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?" + // prerelease suffix (opt)
-      "(?:\\+([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?" + // build suffix (opt)
-      "$");
+      "(?:\\-([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?" + // prerelease suffix (optional)
+      "(?:\\+([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?" + // build suffix (optional)
+      '$');
 
   private static final String suffixReGroup = "(?:[\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*)";
 
   private static final Pattern suffixRe = Pattern.compile(suffixReGroup + '?');
 
-  public static final Pattern matchingRegex = Pattern.compile("^" +
+  public static final Pattern matchingRegex = Pattern.compile('^' +
       "\\d+\\.\\d+\\.\\d+" + // version string
-      "(?:\\-" + suffixReGroup + ")?" + // prerelease suffix (opt)
-      "(?:\\+" + suffixReGroup + ")?" + // build suffix (opt)
-      "$");
+      "(?:\\-" + suffixReGroup + ")?" + // prerelease suffix (optional)
+      "(?:\\+" + suffixReGroup + ")?" + // build suffix (optional)
+      '$');
 
   public final int major;
   public final int minor;
@@ -28,7 +31,7 @@ public final class SemVer {
   public final String prerelease;
   public final String build;
 
-  public SemVer(int major, int minor, int patch, String prerelease, String build) {
+  public SemVer(final int major, final int minor, final int patch, final String prerelease, final String build) {
     this.major = requireNonNegative(major);
     this.minor = requireNonNegative(minor);
     this.patch = requireNonNegative(patch);
