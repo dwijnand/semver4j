@@ -3,10 +3,10 @@ package semver4j;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.util.Objects.requireNonNull;
 import static semver4j.Utils.nullToBlank;
 import static semver4j.Utils.requireMatches;
 import static semver4j.Utils.requireNonNegative;
-import static semver4j.Utils.requireNonNull;
 
 public final class SemVer {
   public static final Pattern groupingRegex = Pattern.compile('^' +

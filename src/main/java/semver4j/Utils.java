@@ -9,11 +9,6 @@ final class Utils {
     return integer;
   }
 
-  static <T> T requireNonNull(final T obj) {
-    require(obj != null);
-    return obj;
-  }
-
   static String requireMatches(final String input, final Pattern pattern) {
     require(pattern.matcher(input).matches());
     return input;
