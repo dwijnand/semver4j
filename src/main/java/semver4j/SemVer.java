@@ -51,4 +51,9 @@ public final class SemVer {
     }
     return null;
   }
+
+  @SuppressWarnings("BooleanMethodNameMustStartWithQuestion") // in this case, it works
+  public static boolean matches(final String str) {
+    return matchingRegex.matcher(str).matches();
+  }
 }

@@ -72,7 +72,7 @@ public final class SemVerTest {
 
   @Test
   public void testMatching() {
-    assertEquals(result, SemVer.matchingRegex.matcher(versionString).matches());
+    assertEquals(result, SemVer.matches(versionString));
   }
 
   @Parameterized.Parameters
