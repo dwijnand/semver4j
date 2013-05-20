@@ -63,18 +63,16 @@ public final class SemVerTest {
 
   @Test
   public void testParse() {
-    final SemVer semVer = SemVer.parse(versionString);
     if (result) {
-      assertNotNull(semVer);
+      assertNotNull(SemVer.parse(versionString));
     } else {
-      assertNull(semVer);
+      assertNull(SemVer.parse(versionString));
     }
   }
 
   @Test
   public void testMatching() {
-    final boolean matches = SemVer.matchingRegex.matcher(versionString).matches();
-    assertEquals(result, matches);
+    assertEquals(result, SemVer.matchingRegex.matcher(versionString).matches());
   }
 
   @Parameterized.Parameters
