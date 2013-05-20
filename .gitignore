@@ -1,7 +1,10 @@
 .*
 !.gitignore
 
-# SBT
-/project/project/
-/project/target/
+# IntelliJ
+/*.iml
+/*.ipr
+/*.iws
+
+# Maven
 /target/

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<FindBugsFilter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="https://findbugs.googlecode.com/svn/trunk/findbugs/etc/bugcollection.xsd">
+  <Match>
+    <Class name="~^.*Test(?:\$\d+)?$"/>
+    <Method name="~.*"/>
+    <Bug pattern="NP_NONNULL_PARAM_VIOLATION"/>
+  </Match>
+</FindBugsFilter>

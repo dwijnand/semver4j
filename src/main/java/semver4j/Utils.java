@@ -4,6 +4,8 @@ import java.util.regex.Pattern;
 
 // Inspired by Guava and Scala
 final class Utils {
+  private Utils() {}
+
   static int requireNonNegative(final int integer) {
     require(integer >= 0);
     return integer;

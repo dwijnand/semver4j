@@ -9,21 +9,21 @@ import static semver4j.Utils.requireMatches;
 import static semver4j.Utils.requireNonNegative;
 
 public final class SemVer {
-  public static final Pattern groupingRegex = Pattern.compile('^' +
-      "((\\d+)\\.(\\d+)\\.(\\d+))" + // version string
-      "(?:\\-([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?" + // prerelease suffix (optional)
-      "(?:\\+([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?" + // build suffix (optional)
-      '$');
+  public static final Pattern groupingRegex = Pattern.compile('^'
+      + "((\\d+)\\.(\\d+)\\.(\\d+))" // version string
+      + "(?:\\-([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?" // prerelease suffix (optional)
+      + "(?:\\+([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?" // build suffix (optional)
+      + '$');
 
   private static final String suffixReGroup = "(?:[\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*)";
 
   private static final Pattern suffixRe = Pattern.compile(suffixReGroup + '?');
 
-  public static final Pattern matchingRegex = Pattern.compile('^' +
-      "\\d+\\.\\d+\\.\\d+" + // version string
-      "(?:\\-" + suffixReGroup + ")?" + // prerelease suffix (optional)
-      "(?:\\+" + suffixReGroup + ")?" + // build suffix (optional)
-      '$');
+  public static final Pattern matchingRegex = Pattern.compile('^'
+      + "\\d+\\.\\d+\\.\\d+" // version string
+      + "(?:\\-" + suffixReGroup + ")?" // prerelease suffix (optional)
+      + "(?:\\+" + suffixReGroup + ")?" // build suffix (optional)
+      + '$');
 
   public final int major;
   public final int minor;
