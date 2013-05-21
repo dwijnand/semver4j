@@ -19,7 +19,7 @@ public final class SemVer {
 
   private static final Pattern suffixRe = Pattern.compile(suffixReGroup + '?');
 
-  public static final Pattern matchingRegex = Pattern.compile('^'
+  private static final Pattern matchingRegex = Pattern.compile('^'
       + "\\d+\\.\\d+\\.\\d+" // version string
       + "(?:\\-" + suffixReGroup + ")?" // prerelease suffix (optional)
       + "(?:\\+" + suffixReGroup + ")?" // build suffix (optional)
