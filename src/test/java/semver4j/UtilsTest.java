@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 @SuppressWarnings("InstanceMethodNamingConvention")
 public final class UtilsTest {
   @Test(expected = IllegalArgumentException.class)
-  public void requireNonNegative_throwsIllegalArgumentException_onNegative() {
+  public void requireNonNegative_throwsIAE_onNegative() {
     Utils.requireNonNegative(-1);
   }
 
@@ -34,7 +34,7 @@ public final class UtilsTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void require_throwsIllegalArgumentException_onFalse() {
+  public void require_throwsIAE_onFalse() {
     Utils.require(false);
   }
 
