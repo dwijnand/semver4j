@@ -131,6 +131,7 @@
         <configuration>
           <excludeFilterFile>src/conf/findbugs/findbugs-exclude.xml</excludeFilterFile>
           <includeTests>true</includeTests>
+          <fork>false</fork>
         </configuration>
         <executions>
           <execution>
