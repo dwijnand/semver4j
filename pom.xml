@@ -42,6 +42,8 @@
           <artifactId>pitest-maven</artifactId>
           <version>0.33</version>
           <configuration>
+            <coverageThreshold>100</coverageThreshold>
+            <mutationThreshold>100</mutationThreshold>
             <timestampedReports>false</timestampedReports>
           </configuration>
         </plugin>
