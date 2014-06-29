@@ -2,6 +2,8 @@ package semver4j;
 
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
 import java.util.regex.Pattern;
 
 import static org.junit.Assert.*;
@@ -56,5 +58,17 @@ public final class UtilsTest {
   @Test
   public void nullToBlank_returnsParameter_onNonBlank() {
     assertEquals("a", Utils.nullToBlank("a"));
+  }
+
+  @Test
+  public void hasOnly1PrivateConstructor_alsoForConverage() throws Exception {
+    final Constructor<?>[] constructors = Utils.class.getDeclaredConstructors();
+    assertEquals(1, constructors.length);
+
+    final Constructor<?> constructor = constructors[0];
+    assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+
+    constructor.setAccessible(true);
+    assertTrue(constructor.newInstance() instanceof Utils);
   }
 }
