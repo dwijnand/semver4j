@@ -90,8 +90,8 @@
         <executions>
           <execution>
             <goals>
-              <goal>analyze-duplicate</goal>
               <goal>analyze-only</goal>
+              <goal>analyze-duplicate</goal>
             </goals>
             <phase>verify</phase>
           </execution>
