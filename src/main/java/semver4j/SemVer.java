@@ -11,7 +11,7 @@ import static semver4j.Utils.requireNonNegative;
 public final class SemVer {
   private static final Pattern groupingRegex = Pattern.compile('^'
       + "((\\d+)\\.(\\d+)\\.(\\d+))" // version string
-      + "(?:\\-([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?" // prerelease suffix (optional)
+      + "(?:-([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?" // prerelease suffix (optional)
       + "(?:\\+([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?" // build suffix (optional)
       + '$');
 
