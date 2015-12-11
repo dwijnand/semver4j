@@ -6,6 +6,18 @@
   <artifactId>semver4j</artifactId>
   <version>1.0-SNAPSHOT</version>
 
+  <name>semver4j</name>
+  <description>A parser for SemVer</description>
+  <url>https://github.com/dwijnand/semver4j</url>
+  <inceptionYear>2013</inceptionYear>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <distribution>repo</distribution>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
   <developers>
     <developer>
       <name>Dale Wijnand</name>
